@@ -2,6 +2,12 @@ const productRouter = require("express").Router();
 const Product = require('../models/product.model');
 
 
+productRouter.route('/').get((req, res) => {
+    Product.find()
+        .then(users => res.json(users))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 productRouter.route('/add').post((req, res) => {
     const name = req.body.name;
     const description = req.body.description;
@@ -18,6 +24,8 @@ productRouter.route('/add').post((req, res) => {
     });
 
     newProducts.save()
-        .then(() => res.json('Exercise added!'))
+        .then(() => res.json('Product added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
+
+module.exports = productRouter;
