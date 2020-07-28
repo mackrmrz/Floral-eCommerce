@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.connect('mongodb://127.0.0.1:27017/products', 
-{ useNewUrlParser: true, useCreateIndex: true });
+{ useNewUrlParser: true, useCreateIndex: true,  useUnifiedTopology: true });
 
 const connection = mongoose.connection;
 connection.once('open', () => {
